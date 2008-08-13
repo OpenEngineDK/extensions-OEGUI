@@ -6,20 +6,25 @@
 #include <Renderers/IRenderNode.h>
 #include <Resources/ITextureResource.h>
 #include <Renderers/IRenderingView.h>
+#include <Display/Layer.h>
 
 using OpenEngine::Resources::ITextureResourcePtr;
 using OpenEngine::Renderers::IRenderingView;
+using OpenEngine::Display::Layer;
 
 namespace OpenEngine {
 namespace Scene {
 
     class LayerNode : public IRenderNode {
     private:
-	int x,y;
+	int w,h;
+	list<Layer> layers;
     public:
-	ITextureResourcePtr texr;
 	
-	LayerNode(int x, int y);
+	LayerNode(int w, int h);
+
+	void AddLayer(Layer l);
+
 	virtual void Apply(IRenderingView *rv);
 
     };
