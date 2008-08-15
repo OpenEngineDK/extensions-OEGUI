@@ -20,11 +20,9 @@ namespace Utils {
     public:
 	LayerStatistics(const float interval, TextSurface* ts);
 
-	    // IModule methods
-    bool IsTypeOf(const std::type_info& inf);
-    void Initialize();
-    void Process(const float deltaTime, const float percent);
-    void Deinitialize();
+  void Handle(OpenEngine::Core::InitializeEventArg arg);
+  void Handle(OpenEngine::Core::ProcessEventArg arg);
+  void Handle(OpenEngine::Core::DeinitializeEventArg arg);
 
     };
 
