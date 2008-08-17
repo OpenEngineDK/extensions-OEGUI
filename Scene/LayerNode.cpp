@@ -27,66 +27,70 @@ void LayerNode::Apply(IRenderingView *rv) {
     glLoadIdentity();			// Reset The Matrix
     // Render HUD
 
-
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_BLEND);
+
+    GLboolean l = glIsEnabled(GL_LIGHTING);
     glDisable(GL_LIGHTING);
     
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
     for(list<Layer>::iterator itr = layers.begin();
-	itr != layers.end();
-	itr++) {
+    	itr != layers.end();
+    	itr++) {
 	
-	ITextureResourcePtr texr = itr->texr;
+    	ITextureResourcePtr texr = itr->texr;
 
-	float width = texr->GetWidth();
-	float height = texr->GetHeight();
+    	float width = texr->GetWidth();
+    	float height = texr->GetHeight();
 
-	float x = itr->origin[0];
-	float y = itr->origin[1];
+    	float x = itr->origin[0];
+    	float y = itr->origin[1];
 
-	if (texr != NULL) {
-	    if (texr->GetID() == 0) {
-		TextureLoader* tl = new TextureLoader();
-		tl->LoadTextureResource(texr);
-	    }
-	    glBindTexture(GL_TEXTURE_2D, texr->GetID());
+    	if (texr != NULL) {
+    	    if (texr->GetID() == 0) {
+    		TextureLoader* tl = new TextureLoader();
+    		tl->LoadTextureResource(texr);
+    	    }
+    	    glBindTexture(GL_TEXTURE_2D, texr->GetID());
                     
-	} else {
-	    glBindTexture(GL_TEXTURE_2D, 0);
+    	} else {
+    	    glBindTexture(GL_TEXTURE_2D, 0);
 
-	}
+    	}
 
-	glColor3f(1,1,1);
+    	glColor3f(1,1,1);
 
-	glBegin(GL_QUADS);
+    	glBegin(GL_QUADS);
 
-	glTexCoord2f(0,0);
-	glVertex3f(x,y,0);
+    	glTexCoord2f(0,0);
+    	glVertex3f(x,y,0);
 
-	glTexCoord2f(0,1);
-	glVertex3f(x,y+height,0);
+    	glTexCoord2f(0,1);
+    	glVertex3f(x,y+height,0);
 
-	glTexCoord2f(1,1);
-	glVertex3f(x+width,y+height,0);
+    	glTexCoord2f(1,1);
+    	glVertex3f(x+width,y+height,0);
 
-	glTexCoord2f(1,0);
-	glVertex3f(x+width,y,0);
+    	glTexCoord2f(1,0);
+    	glVertex3f(x+width,y,0);
 
-	glEnd();
+    	glEnd();
 
     }
 
     glDisable(GL_TEXTURE_2D);
-    glEnable(GL_LIGHTING);
-    glDisable(GL_BLEND);
+    if (l) 
+	glEnable(GL_LIGHTING);
+    //glDisable(GL_BLEND);
+
     // Reset state
     glMatrixMode( GL_PROJECTION );	// Select Projection
     glPopMatrix();			// Pop The Matrix
     glMatrixMode( GL_MODELVIEW );	// Select Modelview
     glPopMatrix();			// Pop The Matrix
+
 }
 
 
