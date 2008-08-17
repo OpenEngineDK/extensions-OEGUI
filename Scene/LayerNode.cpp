@@ -32,6 +32,7 @@ void LayerNode::Apply(IRenderingView *rv) {
 
     GLboolean l = glIsEnabled(GL_LIGHTING);
     glDisable(GL_LIGHTING);
+    glDisable(GL_DEPTH_TEST);
     
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -81,9 +82,11 @@ void LayerNode::Apply(IRenderingView *rv) {
     }
 
     glDisable(GL_TEXTURE_2D);
+
+    glDisable(GL_BLEND);
+    glEnable(GL_DEPTH_TEST);
     if (l) 
 	glEnable(GL_LIGHTING);
-    //glDisable(GL_BLEND);
 
     // Reset state
     glMatrixMode( GL_PROJECTION );	// Select Projection
