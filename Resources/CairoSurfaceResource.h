@@ -14,7 +14,7 @@ namespace Resources {
     class CairoSurfaceResource : public ITextureResource {
     private:
 	GLuint id;
-	int width,height;
+	unsigned int width, height;
 	cairo_surface_t* surface;
 	cairo_t* context;
 	unsigned char* data;
@@ -28,7 +28,7 @@ namespace Resources {
 	CairoSurfaceResource(cairo_surface_t* surface);
 	cairo_t* GetContext();
 	void Rebind();
-	static cairo_surface_t* CreateCairoSurface(int width, int height);
+	static cairo_surface_t* CreateCairoSurface(unsigned int width, unsigned int height);
 
 	// From ITextureResource
 	void Load();
@@ -36,10 +36,11 @@ namespace Resources {
 
 	int GetID();
 	void SetID(int);
-	int GetWidth();
-	int GetHeight();
-	int GetDepth();
+	unsigned int GetWidth();
+	unsigned int GetHeight();
+	unsigned int GetDepth();
 	unsigned char* GetData();
+    ColorFormat GetColorFormat();
     };
 
 

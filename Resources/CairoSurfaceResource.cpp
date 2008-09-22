@@ -42,7 +42,7 @@ namespace Resources {
 	}
     }
 
-    cairo_surface_t* CairoSurfaceResource::CreateCairoSurface(int width, int height) {
+    cairo_surface_t* CairoSurfaceResource::CreateCairoSurface(unsigned int width, unsigned int height) {
 	int channels = 4;
 	unsigned char *buffer = (unsigned char*)calloc(channels * width * height,
 						       sizeof(unsigned char));
@@ -69,9 +69,9 @@ namespace Resources {
     void CairoSurfaceResource::Unload() {}
     int CairoSurfaceResource::GetID() {return id;}
     void CairoSurfaceResource::SetID(int i) {id = i;}
-    int CairoSurfaceResource::GetWidth() {return width;}
-    int CairoSurfaceResource::GetHeight() {return height;}
-    int CairoSurfaceResource::GetDepth() {return 32;}
+    unsigned int CairoSurfaceResource::GetWidth() {return width;}
+    unsigned int CairoSurfaceResource::GetHeight() {return height;}
+    unsigned int CairoSurfaceResource::GetDepth() {return 32;}
     unsigned char* CairoSurfaceResource::GetData() {
 	// for (int i=0;i<height;i++) {
 	//     for (int j=0;j<width;j++) {
@@ -79,6 +79,10 @@ namespace Resources {
 	//     }
 	// }
 	return data;
+    }
+
+    ColorFormat CairoSurfaceResource::GetColorFormat() {
+        return RGBA;
     }
 }
 }
