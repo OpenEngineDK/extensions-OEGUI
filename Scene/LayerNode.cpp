@@ -37,7 +37,7 @@ void LayerNode::Apply(IRenderingView *rv) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
-    for(list<Layer>::iterator itr = layers.begin();
+    for(std::list<Layer>::iterator itr = layers.begin();
     	itr != layers.end();
     	itr++) {
 	

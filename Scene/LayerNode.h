@@ -1,5 +1,3 @@
-// Hej verden
-
 #ifndef _GUI_LAYER_NODE_H_
 #define _GUI_LAYER_NODE_H_
 
@@ -7,6 +5,8 @@
 #include <Resources/ITextureResource.h>
 #include <Renderers/IRenderingView.h>
 #include <Display/Layer.h>
+
+#include <list>
 
 using OpenEngine::Resources::ITextureResourcePtr;
 using OpenEngine::Renderers::IRenderingView;
@@ -18,7 +18,7 @@ namespace Scene {
     class LayerNode : public IRenderNode {
     private:
 	int w,h;
-	list<Layer> layers;
+	std::list<Layer> layers;
     public:
 	
 	LayerNode(int w, int h);
