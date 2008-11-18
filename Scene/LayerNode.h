@@ -1,7 +1,7 @@
 #ifndef _GUI_LAYER_NODE_H_
 #define _GUI_LAYER_NODE_H_
 
-#include <Renderers/IRenderNode.h>
+#include <Scene/RenderNode.h>
 #include <Resources/ITextureResource.h>
 #include <Renderers/IRenderingView.h>
 #include <Display/Layer.h>
@@ -15,7 +15,7 @@ using OpenEngine::Display::Layer;
 namespace OpenEngine {
 namespace Scene {
 
-    class LayerNode : public IRenderNode {
+    class LayerNode : public RenderNode {
     private:
 	int w,h;
 	std::list<Layer> layers;
